@@ -12,10 +12,9 @@ import os
 
 
 def ods2matrix(filename):
+    global tempdir
     # conversion d'un fichier .ods (xml zippé) en tableau 2D
     matrix = [['' for c in range(20)] for r in range(100)]
-    tempdir = '/dev/shm/ods2json'+str(os.getpid())
-    os.mkdir(tempdir)
     subprocess.call('unzip -qod "%s" "%s"' % (tempdir, filename), shell=True)
     with open(tempdir+'/content.xml', 'rb') as ods:
         tree = etree.XML(ods.read())
@@ -29,7 +28,7 @@ def ods2matrix(filename):
                         matrix[row][cell] = e.text.replace('\xa0', '')
                 cell = cell + 1
             row = row + 1
-    subprocess.call('rm -rf "%s"' % tempdir, shell=True)
+    subprocess.call('rm -rf "%s/*"' % tempdir, shell=True)
     return matrix
 
 
@@ -42,6 +41,10 @@ if output != 'JSON':
 dep = sys.argv[2]
 # base sqlite pour retrouver le code INSEE des communes
 db = sqlite3.connect('cog_histo.db').cursor()
+
+# dossier temporaire (avec notre PID pour paralleliser)
+tempdir = '/dev/shm/ods2json'+str(os.getpid())
+os.mkdir(tempdir)
 
 for ods_f in sys.argv[3:]:
     t = ods2matrix(ods_f)
@@ -482,3 +485,5 @@ for ods_f in sys.argv[3:]:
         print(json.dumps(j, sort_keys=True))
     else:
         print(",".join(r))
+
+subprocess.call('rm -rf "%s"' % tempdir, shell=True)
