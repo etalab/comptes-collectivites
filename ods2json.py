@@ -20,12 +20,12 @@ def ods2matrix(filename):
     with open(tempdir+'/content.xml', 'rb') as ods:
         tree = etree.XML(ods.read())
         row = 0
-        body = tree.find('{urn:oasis:names:tc:opendocument:xmlns:office:1.0}body')
-        for r in body.iter('{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-row'):
+        body = tree.find('{%s}body' % tree.nsmap['office'])
+        for r in body.iter('{%s}table-row' % tree.nsmap['table']):
             cell = 0
-            for c in r.iter('{urn:oasis:names:tc:opendocument:xmlns:table:1.0}table-cell'):
+            for c in r.iter('{%s}table-cell' % tree.nsmap['table']):
                 for e in c.iter():
-                    if e.tag == ('{urn:oasis:names:tc:opendocument:xmlns:text:1.0}span'):
+                    if e.tag == ('{%s}span' % tree.nsmap['text']):
                         matrix[row][cell] = e.text.replace('\xa0', '')
                 cell = cell + 1
             row = row + 1
