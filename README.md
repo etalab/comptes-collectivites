@@ -16,6 +16,6 @@ Il s'occupe de maintenir un contexte cohérent pour l'application distante (cook
 
 Ce script python extrait les données principales depuis les fichiers .ods pour les remettre sous forme de fichiers CSV ou json.
 
-Il décompresse le fichier .ods qui est un dossier contenant plusieurs fichiers xml dont content.xml
+Il décompresse (unzip) le fichier .ods qui est un dossier contenant plusieurs fichiers xml dont **content.xml**
 
-content.xml est ensuite parsé à l'aide de lxml pour extraite le contenu des cellules dans un tableau 2D ensuite utilisé pour générer une ligne de CSV ou de json.
+content.xml est ensuite parsé à l'aide de **lxml** pour extraire le contenu des cellules dans un tableau 2D ensuite utilisé pour générer une ligne de CSV ou de json.
