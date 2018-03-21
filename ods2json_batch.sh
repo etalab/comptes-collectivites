@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # conversion d'une série de fichiers annuels
 # exemple: ./ods2json_batch.sh 2016
 
@@ -7,4 +9,3 @@ do
   echo $D
   ./ods2json.py CSV $D $1/$D/*.ods > $1/$D.csv
 done
-csvstack $1/*.csv > $1.csv

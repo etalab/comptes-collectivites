@@ -14,6 +14,13 @@ echo "Conversion parallelisée des ODS en CSV"
 seq $DEBUT $FIN | parallel ./ods2json_batch.sh :::
 
 echo "Cumul fichier $DEBUT-$FIN"
-csvstack 20*.csv > temp.csv
-csvsort -c dep,commune,annee temp.csv > comptes_communes_$DEBUT-$FIN.csv
-rm temp.csv
+head -n 1 $ANNEE/$DEBUT.csv > comptes_communes_$DEBUT-$FIN.csv
+for ANNEE in `seq $DEBUT $FIN`
+do
+  head -n 1 $ANNEE/01.csv > $ANNEE.csv
+  for F in $ANNEE/*.csv
+  do
+    tail -n +2 $F >> $ANNEE.csv
+    tail -n +2 $F >> comptes_communes_$DEBUT-$FIN.csv
+  done
+done

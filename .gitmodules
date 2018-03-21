@@ -1,0 +1,6 @@
+[submodule "dataviz/c3"]
+	path = dataviz/c3
+	url = https://github.com/c3js/c3.git
+[submodule "dataviz/d3"]
+	path = dataviz/d3
+	url = https://github.com/d3/d3.git
