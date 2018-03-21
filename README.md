@@ -2,7 +2,7 @@
 
 Scripts d'extraction et de remise en forme des données des comptes des collectivités.
 
-Les données sont temporairement disponibles sur http://data.cquest.org/dgfip_comptes_communes/ afin d'obtenir un retour des ré-utilisateurs potentiels avant finalisation des scripts et publication officielle.
+Les données sont temporairement disponibles sur http://data.cquest.org/dgfip_comptes_collectivites/ afin d'obtenir un retour des ré-utilisateurs potentiels avant finalisation des scripts et publication officielle.
 
 
 ## download.py
