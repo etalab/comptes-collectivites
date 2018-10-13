@@ -6,6 +6,8 @@ import os
 
 
 dep = sys.argv[1]
+debut = int(sys.argv[2])
+fin = int(sys.argv[3])+1
 comm = ''
 s = requests.session()
 url = "https://www.impots.gouv.fr/cll/zf1/accueil/flux.ex"
@@ -71,7 +73,7 @@ for i in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' if dep != '75' else 'P':
             for td in t.find_all('td'):
                 communes.append(td['id'])
     for nom_commune in communes:
-        for annee in range(2000, 2017):
+        for annee in range(debut, fin):
             path = str(annee)+'/'+dep+'/'+dep+'_'+nom_commune+'.ods'
             # besoin de télécharger le fichier ?
             if not os.path.exists(path):

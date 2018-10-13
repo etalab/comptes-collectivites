@@ -1,13 +1,13 @@
 #!/bin/bash
-DEBUT=2000
-FIN=2016
+DEBUT=2017
+FIN=2017
 
 echo "Téléchargement des fichiers ODS"
 for DEP in `seq -w 01 19` 2A 2B `seq 21 95` `seq 971 974` 976
 do
   # création des dossiers pour ranger les fichiers
   for ANNEE in `seq $DEBUT $FIN`; do mkdir -p $ANNEE/$DEP; done
-  ./download.py $DEP
+  ./download.py $DEP $DEBUT $FIN
 done
 
 echo "Conversion parallelisée des ODS en CSV"
