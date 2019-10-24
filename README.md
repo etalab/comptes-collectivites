@@ -30,3 +30,11 @@ content.xml est ensuite parsé à l'aide de **lxml** pour extraire le contenu de
 
 Conversion de l'ensemble des fichiers .ods d'une année en un fichier .csv unique.
 
+
+## Citation
+
+Certains scripts utilise GNU Parallel:
+  O. Tange (2011): GNU Parallel - The Command-Line Power Tool, 
+  ;login: The USENIX Magazine, February 2011:42-47.
+  http://www.gnu.org/s/parallel
+
