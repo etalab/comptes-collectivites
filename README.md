@@ -2,7 +2,12 @@
 
 Scripts d'extraction et de remise en forme des données des comptes des collectivités.
 
-Les données sont temporairement disponibles sur http://data.cquest.org/dgfip_comptes_collectivites/ afin d'obtenir un retour des ré-utilisateurs potentiels avant finalisation des scripts et publication officielle.
+Les données extraites sont disponibles sur http://data.cquest.org/dgfip_comptes_collectivites/
+
+
+## batch_complet.sh
+
+Script global de traitement, qui appelle les autres scripts dans l'ordre.
 
 
 ## download.py
@@ -19,3 +24,9 @@ Ce script python extrait les données principales depuis les fichiers .ods pour 
 Il décompresse (unzip) le fichier .ods qui est un dossier contenant plusieurs fichiers xml dont **content.xml**
 
 content.xml est ensuite parsé à l'aide de **lxml** pour extraire le contenu des cellules dans un tableau 2D ensuite utilisé pour générer une ligne de CSV ou de json.
+
+
+## ods2json_batch.sh
+
+Conversion de l'ensemble des fichiers .ods d'une année en un fichier .csv unique.
+
